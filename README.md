@@ -5,7 +5,7 @@
 Example connector, with library source included,  written in C++ for WolkAbout
 Smart IoT Cloud.
 
-Provided source is intended to be compiled and ran on unix-like systems.
+Provided source is intended to be compiled and ran on debian-like systems.
 
 This version publishes data via MQTT protocol to
 [WolkSense.com](https://wolksense.com/) cloud instance.
