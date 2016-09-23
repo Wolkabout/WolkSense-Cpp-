@@ -5,17 +5,29 @@
 Example connector, with library source included,  written in C++ for WolkAbout
 Smart IoT Cloud.
 
+Provided source is intended to be compiled and ran on unix-like systems.
+
 This version publishes data via MQTT protocol to
 [WolkSense.com](https://wolksense.com/) cloud instance.
+
 
 ## Compiling WolkConnect-Cpp-
 
 ### Resolving dependencies
 
-Dependencies for WolkConnect-Cpp- are resolved by invoking
+Prior to resolving WolkConnect-Cpp- dependencies, following system packages must
+be installed:
+
+* wget
+* build-essential
+
+Installing these packages can be done by invoking:
+
+    apt-get install wget build-essential
+
+Afterwards WolkConnect-Cpp- dependencies are resolved by invoking:
 
     make dependencies
-
 
 Former downloads and compiles all dependencies needed by WolkConnect-Cpp-.
 
@@ -24,9 +36,44 @@ folder, meaning no changes are made to operating system.
 
 ### Compiling
 
-WolkConnect-Cpp- is compiled by invoking
+WolkConnect-Cpp- is compiled by invoking:
 
     make all
 
-If dependencies are not resolved prior this call, they are automatically
-resolved.
+If dependencies are not resolved prior this call, they will be resolved
+automatically
+
+Compiled executable is located inside 'out/bin' directory
+
+
+## Example
+
+Provided example can activate device on WolkAbout Smart IoT Cloud, and publish
+sample readings, depending on invocation.
+
+### Activating new device
+
+To activate device invoke compiled 'wolksense-cpp-example', in 'out/bin',
+directory in following manner
+
+    ./wolksense-cpp-example {wolksenseEmail} {wolksensePassword} {deviceName}
+
+For example:
+
+    ./wolksense-cpp-example "mail@wolksense.com" "acc_pass" "New example Device"
+
+This will create new device on WolkSense Smart IoT Cloud, show us assigned
+device serial and password, which can be used for further publishing, and
+publish sample readings which can be seen on
+[WolkSense.com](https://wolksense.com/) under account that created device.
+
+### Using activated device
+
+If device is already activated, and device serial, and password, are known,
+'wolksense-cpp-example' can be invoked to publish sample readings in following
+manner:
+
+    ./wolksense-cpp-example {device_serial} {device_password}
+
+Prior will publish sample readings for already present device on WolkAbout Smart
+IoT Cloud.
