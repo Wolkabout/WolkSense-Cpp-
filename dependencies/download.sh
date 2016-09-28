@@ -72,6 +72,15 @@ if [ ! -d "paho.mqtt.cpp" ]; then
 	rm org.eclipse.paho.mqtt.cpp.tar.gz
 fi
 
+# libcurl
+if [ ! -d "libcurl" ]; then
+	echo "Downloading libcurl"
+	wget -O libcurl.tar.gz https://github.com/curl/curl/archive/curl-7_50_3.tar.gz
+	tar -xvzf libcurl.tar.gz
+	mv curl-curl-7_50_3 libcurl
+	rm libcurl.tar.gz
+fi
+
 # restclient-cpp
 if [ ! -d "restclient-cpp" ]; then
 	echo "Downloading paho.mqtt.cpp"

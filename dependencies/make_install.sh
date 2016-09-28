@@ -99,12 +99,24 @@ if [ ! -f "./build/lib/libmqttpp.so" ]; then
     cp -d paho.mqtt.cpp/src/mqtt/* $INCLUDE_DIR/mqtt
 fi
 
+## libcurl
+if [ ! -f "./build/lib/libcurl.so" ]; then
+    echo "Building libcurl"
+
+    cd libcurl && ./buildconf && ./configure --prefix=$BUILD_DIR               \
+                                             --with-ssl=$BUILD_DIR             \
+    && cd ..
+
+    cd libcurl && make && make install && cd ..
+fi
+
 ## restclient-cpp
 if [ ! -f "./build/lib/librestclient-cpp.so" ]; then
     echo "Building restclient-cpp"
 
-    cd restclient-cpp && ./autogen.sh && ./configure --prefix=$BUILD_DIR &&    \
-    cd ..
+    cd restclient-cpp && ./autogen.sh && ./configure --prefix=$BUILD_DIR       \
+                                                     --with-ssl=$BUILD_DIR     \
+    && cd ..
 
     cd restclient-cpp && make install && cd ..
 fi
