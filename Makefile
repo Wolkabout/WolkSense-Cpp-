@@ -36,6 +36,7 @@ SZ  = ${PREFIX}size
 
 CFLAGS	= -Wall -std=c++11 -O0 -g
 CFLAGS += -I./$(INC_DIR)
+CFLAGS += -I./dependencies/build/$(INC_DIR)
 
 LFLAGS  = -L./out/$(LIB_DIR)
 

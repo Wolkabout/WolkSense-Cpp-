@@ -82,21 +82,21 @@ fi
 if [ ! -f "./build/lib/libpaho-mqtt3as.so" ]; then
     echo "Building paho.mqtt.c"
 
-    export LDFLAGS="-L$LIB_DIR"
     export CFLAGS="-I$BUILD_DIR/include"
-    export LD_LIBRARY_PATH=$LIB_DIR
-    export LIBRARY_PATH=$LIB_DIR
+    export LDFLAGS="-L$LIB_DIR"
+    #export LD_LIBRARY_PATH=$LIB_DIR
+    #export LIBRARY_PATH=$LIB_DIR
 
     cd paho.mqtt.c && make && cd ..
     cp -d paho.mqtt.c/build/output/*.so* $LIB_DIR
 
-    rm -rf  $INCLUDE_DIR/mqtt
-    mkdir $INCLUDE_DIR/mqtt
+    cp paho.mqtt.c/src/*.h $INCLUDE_DIR/mqtt
+    cp paho.mqtt.c/src/*.h $BUILD_DIR/include
 
-    unset LDFLAGS
     unset CFLAGS
-    unset LD_LIBRARY_PATH
-    unset LIBRARY_PATH
+    unset LDFLAGS
+    #unset LD_LIBRARY_PATH
+    #unset LIBRARY_PATH
 fi
 
 ## paho.mqtt.cpp
@@ -122,17 +122,21 @@ if [ ! -f "./build/lib/libcurl.so" ]; then
     && cd ..
 
     cd libcurl && make && make install && cd ..
+
+    cp -d libcurl/include/curl $BUILD_DIR/include
 fi
 
 ## restclient-cpp
 if [ ! -f "./build/lib/librestclient-cpp.so" ]; then
     echo "Building restclient-cpp"
 
-    cd restclient-cpp && ./autogen.sh && ./configure --prefix=$BUILD_DIR       \
+    cd restclient-cpp && ./autogen.sh && CXXFLAGS="-I$BUILD_DIR/include" LDFLAGS="-L$LIB_DIR" ./configure --prefix=$BUILD_DIR       \
                                                      --with-ssl=$BUILD_DIR     \
     && cd ..
 
-    cd restclient-cpp && make install && cd ..
+    cd restclient-cpp &&    \
+                          make install                                         \
+    && cd ..
 fi
 
 # Copying necessary libraries to lib folder
