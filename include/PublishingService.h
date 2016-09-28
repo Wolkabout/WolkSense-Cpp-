@@ -90,7 +90,9 @@ private:
     const std::string CERTIFICATE_NAME = "ca.crt";
 
     const std::string HOST = "ssl://wolksense.com:8883";
-    const int QOS = 1;
+    static constexpr const int QOS = 1;
+
+    static constexpr const unsigned int WAIT_FOR_COMPLETITION_TIMEOUT = 10000;
 
     void initMqtt();
 

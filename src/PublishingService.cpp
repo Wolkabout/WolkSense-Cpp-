@@ -76,7 +76,7 @@ void PublishingService::initMqtt()
     connectOptions.opts_.ssl = &sslOptions;
 
     mqtt::itoken_ptr connectToken = m_mqttClient->connect(connectOptions);
-    connectToken->wait_for_completion(10000);    // const
+    connectToken->wait_for_completion(WAIT_FOR_COMPLETITION_TIMEOUT);
 
     // throw
     if (!connectToken->is_complete())
