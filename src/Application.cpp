@@ -49,6 +49,11 @@ int main(int argc, char** argv)
             std::cout << exception.getMessage();
             return -1;
         }
+        catch (mqtt::exception& exception)
+        {
+            std::cout << exception.get_message() << std::endl;
+            return -1;
+        }
     }
     else if (argc == 3)
     {
@@ -57,7 +62,15 @@ int main(int argc, char** argv)
 
         wolkabout::Device device(deviceSerial, devicePassword);
 
-        publishSampleReadings(device);
+        try
+        {
+            publishSampleReadings(device);
+        }
+        catch (mqtt::exception& exception)
+        {
+            std::cout << exception.get_message() << std::endl;
+            return -1;
+        }
     }
     else
     {
