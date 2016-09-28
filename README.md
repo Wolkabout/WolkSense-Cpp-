@@ -20,10 +20,11 @@ be installed:
 
 * wget
 * build-essential
+* zlib1g-dev
 
 Installing these packages can be done by invoking:
 
-    apt-get install wget build-essential
+    apt-get install wget build-essential zlib1g-dev
 
 Afterwards WolkConnect-Cpp- dependencies are resolved by invoking:
 
