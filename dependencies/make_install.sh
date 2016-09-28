@@ -130,7 +130,9 @@ fi
 if [ ! -f "./build/lib/librestclient-cpp.so" ]; then
     echo "Building restclient-cpp"
 
-    cd restclient-cpp && ./autogen.sh && CXXFLAGS="-I$BUILD_DIR/include" LDFLAGS="-L$LIB_DIR" ./configure --prefix=$BUILD_DIR       \
+    cd restclient-cpp && ./autogen.sh && CXXFLAGS="-I$BUILD_DIR/include"       \
+                                         LDFLAGS="-L$LIB_DIR"                  \
+                                         ./configure --prefix=$BUILD_DIR       \
                                                      --with-ssl=$BUILD_DIR     \
     && cd ..
 
