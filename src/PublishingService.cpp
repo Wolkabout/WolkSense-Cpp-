@@ -32,13 +32,13 @@ PublishingService::~PublishingService()
 
 void PublishingService::publish(const std::string& message)
 {
-    if (!m_mqttClient)
-    {
-        initMqtt();
-    }
-
     try
     {
+        if (!m_mqttClient)
+        {
+            initMqtt();
+        }
+
         mqtt::message_ptr pubmsg = std::make_shared<mqtt::message>(message);
         pubmsg->set_qos(QOS);
 
@@ -78,12 +78,13 @@ void PublishingService::initMqtt()
     mqtt::itoken_ptr connectToken = m_mqttClient->connect(connectOptions);
     connectToken->wait_for_completion(WAIT_FOR_COMPLETITION_TIMEOUT);
 
-    // throw
     if (!connectToken->is_complete())
     {
+        // ...
     }
     if (!m_mqttClient->is_connected())
     {
+        // ...
     }
 }
 
