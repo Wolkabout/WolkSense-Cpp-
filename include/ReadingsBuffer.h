@@ -46,19 +46,12 @@ public:
     bool isEmpty() const;
 
     /**
-     * @brief addReading Adds Reading into ReadingsBuffer with current unix time as timestamp
-     * @param type Type of reading
-     * @param value Value read
-     */
-    void addReading(const Reading::Type& type, const std::string& value);
-
-    /**
      * @brief addReading Adds Reading into ReadingsBuffer with specified Posix time as timestamp
      * @param time Posix time when value was read
      * @param type Type of Reading
      * @param value Value read
      */
-    void addReading(unsigned long time, const Reading::Type& type, const std::string& value);
+    void addReading(const Reading::Type& type, const std::string& value, unsigned long time = 0);
 
     /**
      * @brief getFormatedData

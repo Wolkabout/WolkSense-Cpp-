@@ -29,6 +29,25 @@
 namespace wolkabout
 {
 /**
+ * @brief The Direction struct
+ *
+ * This struct is used for reading types that have x, y and z axises like: ACCELERATION, GYRO, and MAGNET.
+ */
+struct Direction
+{
+    /**
+     * @brief Direction constructor.
+     * @param xx x value
+     * @param yy y value
+     * @param zz z value
+     */
+    Direction(int xx = 0, int yy = 0, int zz = 0) : x(xx), y(yy), z(zz) {}
+    int x;
+    int y;
+    int z;
+};
+
+/**
  * @brief The WolkSense class Provides required functionality to store new readings, and publish
  *        stored readings to WolkAbout Cloud, either concurrently by publishing every N milliseconds,
  *        or manually calling publish method
@@ -45,19 +64,28 @@ public:
     virtual ~WolkSense();
 
     /**
-     * @brief addReading Adds Reading into ReadingsBuffer with specified Posix time as timestamp
-     * @param time Posix time when value was read
+     * @brief Adds Reading into ReadingsBuffer with specified Posix time as timestamp
      * @param type Type of Reading::Type
      * @param value Value read
+     * @param time Posix time when value was read
      */
-    void addReading(unsigned long time, const Reading::Type& type, const std::string& value);
+    void addReading(const Reading::Type& type, const std::string& value, unsigned long time = 0);
 
     /**
-     * @brief addReading Adds Reading to be sent into buffer
-     * @param type Reading::Type of reading
+     * @brief Adds Reading into ReadingsBuffer with specified Posix time as timestamp
+     * @param type Type of Reading::Type
      * @param value Value read
+     * @param time Posix time when value was read
      */
-    void addReading(const Reading::Type& type, const std::string& value);
+    void addReading(const Reading::Type& type, const int value, unsigned long time = 0);
+
+    /**
+     * @brief Adds Reading into ReadingsBuffer with specified Posix time as timestamp
+     * @param type Type of Reading::Type
+     * @param value Direction value that is used for types: ACCELERATION, GYRO, and MAGNET
+     * @param time Posix time when value was read
+     */
+    void addReading(const Reading::Type& type, const Direction& value, unsigned long time = 0);
 
     /**
      * @brief setServiceListener

@@ -21,6 +21,11 @@
 
 namespace wolkabout
 {
+char getSign(int value)
+{
+    return value > 0 ? '+' : '-';
+}
+
 WolkSense::WolkSense(Device device) : m_device(std::move(device))
 {
     m_publishingService = std::unique_ptr<PublishingService>(new PublishingService(m_device));
@@ -38,14 +43,26 @@ WolkSense::~WolkSense()
     }
 }
 
-void WolkSense::addReading(unsigned long time, const Reading::Type& type, const std::string& value)
+void WolkSense::addReading(const Reading::Type& type, const std::string& value, unsigned long time)
 {
-    m_readingsBuffer->addReading(time, type, value);
+    m_readingsBuffer->addReading(type, value, time);
 }
 
-void WolkSense::addReading(const Reading::Type& type, const std::string& value)
+void WolkSense::addReading(const Reading::Type& type, const int value, unsigned long time)
 {
-    m_readingsBuffer->addReading(type, value);
+    m_readingsBuffer->addReading(type, std::to_string(value), time);
+}
+
+void WolkSense::addReading(const Reading::Type& type, const Direction& value, unsigned long time)
+{
+    if (type == Reading::Type::ACCELERATION || type == Reading::Type::GYRO || type == Reading::Type::MAGNET)
+    {
+        char buffer[24];
+        snprintf(buffer, 24, "%c%02d%c%02d%c%02d", getSign(value.x), std::abs(value.x), getSign(value.y),
+                 std::abs(value.y), getSign(value.z), std::abs(value.z));
+
+        m_readingsBuffer->addReading(type, std::string(buffer), time);
+    }
 }
 
 void WolkSense::setServiceListener(std::weak_ptr<ServiceListener> serviceListener)

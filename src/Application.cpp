@@ -118,30 +118,30 @@ void publishSampleReadings(const wolkabout::Device device)
     std::cout << std::endl << "Press enter to publish first set of readings" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    wolksense->addReading(1474286400, wolkabout::Reading::HUMIDITY, "80");
-    wolksense->addReading(1474286400, wolkabout::Reading::TEMPERATURE, "264");
-    wolksense->addReading(1474286400, wolkabout::Reading::STEPS, "12");
-    wolksense->addReading(1474286400, wolkabout::Reading::LIGHT, "150");
-    wolksense->addReading(1474286400, wolkabout::Reading::ACCELERATION, "+05-05+05");
+    wolksense->addReading(wolkabout::Reading::HUMIDITY, 80, 1474286400);
+    wolksense->addReading(wolkabout::Reading::TEMPERATURE, 264, 1474286400);
+    wolksense->addReading(wolkabout::Reading::STEPS, 12, 1474286400);
+    wolksense->addReading(wolkabout::Reading::LIGHT, 150, 1474286400);
+    wolksense->addReading(wolkabout::Reading::ACCELERATION, wolkabout::Direction{5, -5, 5}, 1474286400);
 
     std::cout << std::endl << "Press enter to publish second set of readings" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    wolksense->addReading(wolkabout::Reading::HUMIDITY, "79");
-    wolksense->addReading(wolkabout::Reading::TEMPERATURE, "275");
-    wolksense->addReading(wolkabout::Reading::STEPS, "14");
-    wolksense->addReading(wolkabout::Reading::LIGHT, "167");
-    wolksense->addReading(wolkabout::Reading::ACCELERATION, "+01-03+02");
+    wolksense->addReading(wolkabout::Reading::HUMIDITY, 79);
+    wolksense->addReading(wolkabout::Reading::TEMPERATURE, 275);
+    wolksense->addReading(wolkabout::Reading::STEPS, 14);
+    wolksense->addReading(wolkabout::Reading::LIGHT, 167);
+    wolksense->addReading(wolkabout::Reading::ACCELERATION, wolkabout::Direction{1, -3, 2});
 
     std::cout << std::endl << "Press enter to publish last set of readings" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     wolksense->stopAutoPublish();
-    wolksense->addReading(wolkabout::Reading::HUMIDITY, "67");
-    wolksense->addReading(wolkabout::Reading::TEMPERATURE, "282");
-    wolksense->addReading(wolkabout::Reading::STEPS, "22");
-    wolksense->addReading(wolkabout::Reading::LIGHT, "200");
-    wolksense->addReading(wolkabout::Reading::ACCELERATION, "+02-04+03");
+    wolksense->addReading(wolkabout::Reading::HUMIDITY, 67);
+    wolksense->addReading(wolkabout::Reading::TEMPERATURE, 282);
+    wolksense->addReading(wolkabout::Reading::STEPS, 22);
+    wolksense->addReading(wolkabout::Reading::LIGHT, 200);
+    wolksense->addReading(wolkabout::Reading::ACCELERATION, wolkabout::Direction{2, -4, 3});
     wolksense->publishReadings();
 
     std::cout << std::endl << "Press enter to exit" << std::endl;

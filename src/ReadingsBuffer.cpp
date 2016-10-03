@@ -36,16 +36,9 @@ bool ReadingsBuffer::isEmpty() const
     return m_buffer.isEmpty();
 }
 
-void ReadingsBuffer::addReading(const Reading::Type& type, const std::string& value)
+void ReadingsBuffer::addReading(const Reading::Type& type, const std::string& value, unsigned long time)
 {
-    auto reading = std::make_shared<Reading>(getPosixTime(), type, value);
-
-    m_buffer.push(reading);
-}
-
-void ReadingsBuffer::addReading(unsigned long time, const Reading::Type& type, const std::string& value)
-{
-    auto reading = std::make_shared<Reading>(time, type, value);
+    auto reading = std::make_shared<Reading>(time == 0 ? getPosixTime() : time, type, value);
 
     m_buffer.push(reading);
 }
