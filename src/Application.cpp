@@ -118,11 +118,16 @@ void publishSampleReadings(const wolkabout::Device device)
     std::cout << std::endl << "Press enter to publish first set of readings" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    wolksense->addReading(wolkabout::Reading::HUMIDITY, 80, 1474286400);
-    wolksense->addReading(wolkabout::Reading::TEMPERATURE, 264, 1474286400);
-    wolksense->addReading(wolkabout::Reading::STEPS, 12, 1474286400);
-    wolksense->addReading(wolkabout::Reading::LIGHT, 150, 1474286400);
-    wolksense->addReading(wolkabout::Reading::ACCELERATION, wolkabout::Direction{5, -5, 5}, 1474286400);
+    const auto now = std::chrono::system_clock::now();
+    const auto epoch = now.time_since_epoch();
+    const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(epoch);
+    unsigned long secondsCount = seconds.count();
+
+    wolksense->addReading(wolkabout::Reading::HUMIDITY, 80, secondsCount);
+    wolksense->addReading(wolkabout::Reading::TEMPERATURE, 264, secondsCount);
+    wolksense->addReading(wolkabout::Reading::STEPS, 12, secondsCount);
+    wolksense->addReading(wolkabout::Reading::LIGHT, 150, secondsCount);
+    wolksense->addReading(wolkabout::Reading::ACCELERATION, wolkabout::Direction{5, -5, 5}, secondsCount);
 
     std::cout << std::endl << "Press enter to publish second set of readings" << std::endl;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
