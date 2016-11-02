@@ -43,7 +43,8 @@ public:
         BATTERY,
         HEARTRATE,
         STEPS,
-        CALORIES
+        CALORIES,
+        GENERIC
     };
 
     /**

@@ -67,6 +67,8 @@ std::string Reading::getPrefix(const Reading& reading)
         return "STP";
     case Type::CALORIES:
         return "KCAL";
+    case Type::GENERIC:
+        return "GEN";
     default:
         return "UNKNOWN";
     }
