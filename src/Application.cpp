@@ -123,6 +123,7 @@ void publishSampleReadings(const wolkabout::Device device)
     const auto seconds = std::chrono::duration_cast<std::chrono::seconds>(epoch);
     unsigned long secondsCount = seconds.count();
 
+    wolksense->addReading(wolkabout::Reading::GENERIC, 50, secondsCount);
     wolksense->addReading(wolkabout::Reading::HUMIDITY, 80, secondsCount);
     wolksense->addReading(wolkabout::Reading::TEMPERATURE, 264, secondsCount);
     wolksense->addReading(wolkabout::Reading::STEPS, 12, secondsCount);
