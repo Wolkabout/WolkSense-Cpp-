@@ -49,7 +49,7 @@ Compiled executable is located inside 'out/bin' directory
 
 ## Example
 
-Provided example can activate device on WolkAbout Smart IoT Cloud, and publish
+Provided example can activate device on WolkSense Sensor Data Cloud, and publish
 sample readings, depending on invocation.
 
 ### Activating new device
