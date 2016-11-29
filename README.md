@@ -2,8 +2,8 @@
 
 ## About
 
-Example connector, with library source included,  written in C++ for WolkAbout
-Smart IoT Cloud.
+Example connector, with library source included, written in C++ for WolkSense 
+Sensor Data Cloud.
 
 Provided source is intended to be compiled and ran on debian-like systems.
 
@@ -63,7 +63,7 @@ For example:
 
     ./wolksense-cpp-example "mail@wolksense.com" "acc_pass" "New example Device"
 
-This will create new device on WolkSense Smart IoT Cloud, show us assigned
+This will create new device on WolkSense Sensor Data Cloud, show us assigned
 device serial and password, which can be used for further publishing, and
 publish sample readings which can be seen on
 [WolkSense.com](https://wolksense.com/) under account that created device.
@@ -76,5 +76,5 @@ manner:
 
     ./wolksense-cpp-example {device_serial} {device_password}
 
-Prior will publish sample readings for already present device on WolkAbout Smart
-IoT Cloud.
+Prior will publish sample readings for already present device on WolkSense Sensor 
+Data Cloud.
