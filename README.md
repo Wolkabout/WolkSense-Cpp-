@@ -8,7 +8,7 @@ Sensor Data Cloud.
 Provided source is intended to be compiled and ran on debian-like systems.
 
 This version publishes data via MQTT protocol to
-[WolkSense.com](https://wolksense.com/) cloud instance.
+[WolkSense Sensor Data Cloud](https://wolksense.com/) cloud instance.
 
 
 ## Compiling WolkConnect-Cpp-
